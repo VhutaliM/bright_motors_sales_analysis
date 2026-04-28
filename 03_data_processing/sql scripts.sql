@@ -165,3 +165,57 @@ GROUP BY make, model
 ORDER BY total_revenue DESC
 LIMIT 10;
 
+-- Find sales performance by state/location
+SELECT
+  state,
+  COUNT(*) AS total_cars_sold,
+  ROUND(SUM(total_revenue), 2) AS total_revenue,
+  ROUND(AVG(selling_price), 2) AS average_selling_price
+FROM car_sales_cleaned
+GROUP BY state
+ORDER BY total_revenue DESC;
+
+-- Compare mileage category with average selling price
+SELECT
+  mileage_category,
+  COUNT(*) AS total_cars_sold,
+  ROUND(AVG(odometer), 2) AS average_mileage,
+  ROUND(AVG(selling_price), 2) AS average_selling_price
+FROM car_sales_cleaned
+GROUP BY mileage_category
+ORDER BY mileage_category;
+
+-- Compare car condition with selling price
+SELECT
+  condition_category,
+  COUNT(*) AS total_cars_sold,
+  ROUND(AVG(condition_score), 2) AS average_condition_score,
+  ROUND(AVG(selling_price), 2) AS average_selling_price
+FROM car_sales_cleaned
+GROUP BY condition_category
+ORDER BY condition_category;
+
+-- Compare selling price against market value
+SELECT
+  price_performance,
+  COUNT(*) AS total_cars,
+  ROUND(SUM(price_difference), 2) AS total_price_difference,
+  ROUND(AVG(price_difference), 2) AS average_price_difference
+FROM car_sales_cleaned
+GROUP BY price_performance
+ORDER BY price_performance;
+
+-- Show sales trend by month
+SELECT
+  sale_year,
+  sale_month_number,
+  sale_month_name,
+  COUNT(*) AS total_cars_sold,
+  ROUND(SUM(total_revenue), 2) AS total_revenue
+FROM car_sales_cleaned
+GROUP BY sale_year, sale_month_number, sale_month_name
+ORDER BY sale_year, sale_month_number;
+
+
+
+
