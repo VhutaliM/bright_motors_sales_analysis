@@ -142,6 +142,26 @@ SELECT DISTINCT interior_color
 FROM car_sales_cleaned
 ORDER BY interior_color;
 
+-- Find the top 10 car makes by total revenue
+SELECT
+  make,
+  COUNT(*) AS total_cars_sold,
+  ROUND(SUM(total_revenue), 2) AS total_revenue,
+  ROUND(AVG(selling_price), 2) AS average_selling_price
+FROM car_sales_cleaned
+GROUP BY make
+ORDER BY total_revenue DESC
+LIMIT 10;
 
-
+-- Find the top 10 car models by revenue
+SELECT
+  make,
+  model,
+  COUNT(*) AS total_cars_sold,
+  ROUND(SUM(total_revenue), 2) AS total_revenue,
+  ROUND(AVG(selling_price), 2) AS average_selling_price
+FROM car_sales_cleaned
+GROUP BY make, model
+ORDER BY total_revenue DESC
+LIMIT 10;
 
