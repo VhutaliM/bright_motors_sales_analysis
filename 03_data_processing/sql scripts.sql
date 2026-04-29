@@ -1,13 +1,13 @@
 select * from `workspace`.`default`.`car_sales` limit 200;
 
--- Syntax to see the datatypes of all the columns
+--1. Syntax to see the datatypes of all the columns
 DESCRIBE TABLE car_sales;
 
--- Syntax to count the number of rows in the table
+--2.  Syntax to count the number of rows in the table
 SELECT COUNT(*) AS total_rows
 FROM car_sales;
 
--- Check missing values for all columns
+--3.  Check missing values for all columns
 SELECT
   COUNT(*) - COUNT(year) AS missing_year,
   COUNT(*) - COUNT(make) AS missing_make,
@@ -27,7 +27,7 @@ SELECT
   COUNT(*) - COUNT(saledate) AS missing_saledate
 FROM car_sales;
 
--- Check duplicates
+-- 4. Check duplicates
 SELECT
   vin,
   saledate,
@@ -38,7 +38,7 @@ GROUP BY vin, saledate, sellingprice
 HAVING COUNT(*) > 1
 ORDER BY duplicate_count DESC;
 
--- Create cleaned car sales table
+-- 6. Create cleaned car sales table
 CREATE OR REPLACE TABLE car_sales_cleaned AS
 
 WITH cleaned_dates AS (
@@ -132,17 +132,17 @@ WHERE sellingprice IS NOT NULL
   AND model IS NOT NULL
   AND sale_datetime IS NOT NULL;
 
--- Checking columns
+-- 7. Checking columns
 SELECT *
 FROM car_sales_cleaned
 LIMIT 500;
 
--- Check bad interior values:
+-- 8. Check bad interior values:
 SELECT DISTINCT interior_color
 FROM car_sales_cleaned
 ORDER BY interior_color;
 
--- Find the top 10 car makes by total revenue
+-- 9. Find the top 10 car makes by total revenue
 SELECT
   make,
   COUNT(*) AS total_cars_sold,
@@ -153,7 +153,7 @@ GROUP BY make
 ORDER BY total_revenue DESC
 LIMIT 10;
 
--- Find the top 10 car models by revenue
+-- 10. Find the top 10 car models by revenue
 SELECT
   make,
   model,
@@ -165,7 +165,7 @@ GROUP BY make, model
 ORDER BY total_revenue DESC
 LIMIT 10;
 
--- Find sales performance by state/location
+-- 11. Find sales performance by state/location
 SELECT
   state,
   COUNT(*) AS total_cars_sold,
@@ -175,7 +175,7 @@ FROM car_sales_cleaned
 GROUP BY state
 ORDER BY total_revenue DESC;
 
--- Compare mileage category with average selling price
+-- 12. Compare mileage category with average selling price
 SELECT
   mileage_category,
   COUNT(*) AS total_cars_sold,
@@ -185,7 +185,7 @@ FROM car_sales_cleaned
 GROUP BY mileage_category
 ORDER BY mileage_category;
 
--- Compare car condition with selling price
+-- 13. Compare car condition with selling price
 SELECT
   condition_category,
   COUNT(*) AS total_cars_sold,
@@ -195,7 +195,7 @@ FROM car_sales_cleaned
 GROUP BY condition_category
 ORDER BY condition_category;
 
--- Compare selling price against market value
+-- 14. Compare selling price against market value
 SELECT
   price_performance,
   COUNT(*) AS total_cars,
@@ -205,7 +205,7 @@ FROM car_sales_cleaned
 GROUP BY price_performance
 ORDER BY price_performance;
 
--- Show sales trend by month
+-- 15. Show sales trend by month
 SELECT
   sale_year,
   sale_month_number,
