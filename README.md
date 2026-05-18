@@ -122,3 +122,11 @@ The Power BI dashboard includes:
 - Low mileage vehicles had higher average selling prices
 - Most vehicles sold below market value
 - Revenue trends varied significantly across months
+
+
+# 📷 Dashboard Preview
+
+<p align="center">
+  <img src="04_project_presentation/dashboard_preview.png" width="900">
+</p>
+ 
