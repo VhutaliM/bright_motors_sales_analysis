@@ -4,14 +4,26 @@
 This project is an end-to-end data analytics case study focused on analyzing car sales data for Bright Motors. 
 
 The goal is to extract insights that can support business decisions related to sales performance, customer trends, and regional growth.
-## Project Structure
 
-| Folder | Description |
+## The dataset includes columns such as:
+| Column | Description |
 |---|---|
-| 01_project_description_and_raw_data
-| 02_project_planning 
-| 03_data_processing 
-| 04_project_presentation
+| year | Vehicle manufacturing year |
+| make | Vehicle brand |
+| model | Vehicle model |
+| trim | Vehicle trim level |
+| body | Vehicle body type |
+| transmission | Transmission type |
+| vin | Vehicle Identification Number |
+| state | Sales location |
+| condition | Vehicle condition score |
+| odometer | Mileage |
+| color | Exterior color |
+| interior | Interior color |
+| seller | Seller/dealership |
+| mmr | Market value estimate |
+| sellingprice | Actual selling price |
+| saledate | Date of sale |
 ---
 
 ## Dataset Access
